@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
-
+// import { Context } from "../store/AppContext.jsx";
 //create your first component
 export function Home() {
 	return (
