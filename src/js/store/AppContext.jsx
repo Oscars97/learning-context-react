@@ -16,14 +16,21 @@ const AppContext = PassedComponent => {
 		actions: {
 			//este va a ser el objeto que va a contener las acciones que podemos realizar con esa tareas
 			addTarea: tarea => {
-				console.log(tarea);
+				tareas.store.todos.push(tarea); //una vez que editamos el arreglo de tareas debemos crear
+				//una copia de nuestro estado
+				// para que se refresque el contenido
+
+				setTareas({
+					store: { todos: [...tareas.store.todos] },
+					actions: { ...tareas.actions }
+				});
 			}
 		}
 	});
 	return (
 		// El el value indicamos las variables que vamos a pasar
-		<Context.Provider value={(tareas, setTareas)}>
-			{PassedComponent}
+		<Context.Provider value={{ tareas, setTareas }}>
+			{PassedComponent.children}
 			{/* Aqui metemos el componente que va a tener acceso a nuestras variables y funciones */}
 		</Context.Provider>
 	);
